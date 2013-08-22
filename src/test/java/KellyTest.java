@@ -8,6 +8,8 @@ import lego.gracekelly.exceptions.KellyException;
 import org.mockito.Mockito;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.ExecutionException;
+
 public class KellyTest {
 
     @Test
@@ -68,6 +70,26 @@ public class KellyTest {
         Mockito.verify(cacheLoader).reload("dude","suman karthik");
 
         Mockito.verify(cacheProvider).put("dude", cacheEntry1);
+    }
+
+    @Test
+    public void ttlZeroTest() throws CacheLoaderException, CacheProviderException, InterruptedException, KellyException {
+        CacheProvider<String> cacheProvider = Mockito.mock(CacheProvider.class);
+        CacheLoader<String> cacheLoader = Mockito.mock(CacheLoader.class);
+
+        CacheEntry<String> cacheEntry = new CacheEntry<String>("dude", "suman karthik");
+
+        Kelly<String> kelly = new Kelly<String>(cacheProvider, cacheLoader, 1);
+        Mockito.when(cacheProvider.get("dude")).thenReturn(cacheEntry);
+
+        assert kelly.get("dude").equals("suman karthik");
+
+        Thread.sleep(1000);
+
+        assert kelly.get("dude").equals("suman karthik");
+
+
+        Mockito.verify(cacheLoader, Mockito.never()).reload("dude","suman karthik");
     }
 
 }

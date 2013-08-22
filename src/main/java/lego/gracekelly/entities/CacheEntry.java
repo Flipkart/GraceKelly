@@ -1,11 +1,13 @@
 package lego.gracekelly.entities;
 
+import java.io.Serializable;
+
 /**
  * The CacheEntry class is a simple java object that holds data required to get, put and invalidate a cache entry.
  * The generic parameter indicates the type of the object that'll be store against the given key.
  * @param <T>
  */
-public final class CacheEntry<T>{
+public final class CacheEntry<T> implements Serializable {
 
     private final T value;
     private final String key;
@@ -16,6 +18,12 @@ public final class CacheEntry<T>{
         throw new UnsupportedOperationException();
     };
 
+    /**
+     * Constructor for an expirable CacheEntry
+     * @param key
+     * @param value
+     * @param ttl
+     */
     public CacheEntry(final String key, final T value, final long ttl){
         this.key = key;
         this.value = value;
@@ -23,6 +31,11 @@ public final class CacheEntry<T>{
         this.epoch_timestamp = System.currentTimeMillis()/1000;
     }
 
+    /**
+     * Constructor for a non-expirable CacheEntry
+     * @param key
+     * @param value
+     */
     public CacheEntry(final String key, final T value){
         this.key = key;
         this.value = value;

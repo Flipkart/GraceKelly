@@ -23,7 +23,63 @@
             <artifactId>testng</artifactId>
             <version>6.8</version>
         </dependency>
+        <dependency>
+            <groupId>couchbase</groupId>
+            <artifactId>couchbase-client</artifactId>
+            <version>1.1.9</version>
+        </dependency>
     </dependencies>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.5.2</version>
+                <configuration>
+                    <formats>
+                        <format>html</format>
+                        <format>xml</format>
+                    </formats>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>cobertura-maven-plugin</artifactId>
+                    <version>2.5.2</version>
+                    <configuration>
+                        <aggregate>true</aggregate>
+                        <instrumentation>
+                            <!-- <ignores>
+                                <ignore>lego.gracekelly.exceptions.*</ignore>
+                                <ignore>lego.gracekelly.api.*</ignore>
+                            </ignores> -->
+                            <!-- <excludes>
+                                <exclude>lego/gracekelly/*.class</exclude>
+                                <exclude>lego/gracekelly/api/*.class</exclude>
+                            </excludes> -->
+                        </instrumentation>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>2.7</version>
+                    <configuration>
+                        <additionalparam>-views</additionalparam>
+                        <show>public</show>
+                        <useStandardDocletOptions>true</useStandardDocletOptions>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
     <distributionManagement>
         <repository>

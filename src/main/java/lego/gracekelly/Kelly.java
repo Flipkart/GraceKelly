@@ -51,10 +51,13 @@ public class Kelly<T>{
     }
 
     private boolean cacheEntryExpired(CacheEntry cacheEntry){
+
+        if (cacheEntry.getTtl()==0)
+            return false;
+
         long entryTimeStamp = cacheEntry.getEpoch_timestamp();
         long currentTime = System.currentTimeMillis()/1000;
         long ttl = cacheEntry.getTtl();
-
         if ((entryTimeStamp+ttl) < currentTime)
             return true;
         else

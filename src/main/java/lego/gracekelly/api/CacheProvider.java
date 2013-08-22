@@ -11,20 +11,18 @@ import java.util.concurrent.Future;
  */
 public interface CacheProvider <T>{
     /**
-     * Get's the relevant object from the cache provider synchronously. If something goes wrong a
-     * {@link CacheProviderException} is thrown.
+     * Returns a {@link CacheEntry}<T> if it is present in the underlying cache, or it returns a null otherwise.
      * @param key
-     * @return Object that was persisted in the cache for the given key, or null if the value is unavailable
+     * @return {@link CacheEntry}<T> for the given key or return null if not present
      * @throws CacheProviderException
      */
     CacheEntry<T> get(String key) throws CacheProviderException;
 
     /**
-     * Asynchronously puts the Object into the cache along with the given key. The Future boolean represents
-     * whether the operation was successful or not.
+     * Tries to update the cache with the given {@link CacheEntry}<T> for the given key
      * @param key
      * @param value
-     * @return Future of a Boolean that will eventually hold a true/false or will throw an exception of future.get
+     * @return true or false based on the success of putting the {@link CacheEntry}<T> into the cache.
      * @throws CacheProviderException
      */
     Boolean put(String key, CacheEntry<T> value) throws CacheProviderException;
