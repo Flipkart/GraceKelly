@@ -50,6 +50,14 @@ public class Kelly<T>{
         }
     }
 
+    public boolean put(String key, CacheEntry<T> value) throws KellyException {
+        try {
+            return cacheProvider.put(key,value);
+        } catch (CacheProviderException e) {
+            throw new KellyException(e);
+        }
+    }
+
     private boolean cacheEntryExpired(CacheEntry cacheEntry){
 
         if (cacheEntry.getTtl()==0)
@@ -58,10 +66,11 @@ public class Kelly<T>{
         long entryTimeStamp = cacheEntry.getEpoch_timestamp();
         long currentTime = System.currentTimeMillis()/1000;
         long ttl = cacheEntry.getTtl();
+
         if ((entryTimeStamp+ttl) < currentTime)
-            return true;
-        else
             return false;
+        else
+            return true;
     }
 
     private void reloadCacheEntry(CacheEntry cacheEntry) throws ExecutionException, InterruptedException {

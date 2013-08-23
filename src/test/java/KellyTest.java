@@ -17,10 +17,12 @@ public class KellyTest {
 
         CacheProvider<String> cacheProvider = Mockito.mock(CacheProvider.class);
         CacheLoader<String> cacheLoader = Mockito.mock(CacheLoader.class);
+        CacheEntry<String> cacheEntry = new CacheEntry<String>("dude","suman",50);
 
         boolean kellyExceptionThrown = false;
 
         Mockito.when(cacheProvider.get("dude")).thenThrow(new CacheProviderException("exception"));
+        Mockito.when(cacheProvider.put("dude",cacheEntry)).thenThrow(new CacheProviderException("exception"));
 
         Kelly kelly = new Kelly(cacheProvider, cacheLoader, 1);
 
@@ -31,6 +33,17 @@ public class KellyTest {
         }
 
         assert kellyExceptionThrown;
+
+        kellyExceptionThrown = false;
+
+        try {
+            kelly.put("dude",cacheEntry);
+        } catch (KellyException e){
+            kellyExceptionThrown = true;
+        }
+
+        assert kellyExceptionThrown;
+
     }
 
     @Test
@@ -90,6 +103,38 @@ public class KellyTest {
 
 
         Mockito.verify(cacheLoader, Mockito.never()).reload("dude","suman karthik");
+    }
+
+    @Test
+    public void kellyGetTest() throws CacheProviderException, KellyException {
+        CacheProvider<String> cacheProvider = Mockito.mock(CacheProvider.class);
+        CacheLoader<String> cacheLoader = Mockito.mock(CacheLoader.class);
+        CacheEntry<String> cacheEntry = new CacheEntry<String>("dude","suman",1);
+
+
+        Mockito.when(cacheProvider.get("dude")).thenReturn(cacheEntry);
+
+        Kelly<String> kelly = new Kelly<String>(cacheProvider,cacheLoader,1);
+
+        assert kelly.get("dude").equals("suman");
+
+    }
+
+    @Test
+    public void kellyPutTest() throws CacheProviderException, KellyException {
+        CacheProvider<String> cacheProvider = Mockito.mock(CacheProvider.class);
+        CacheLoader<String> cacheLoader = Mockito.mock(CacheLoader.class);
+        CacheEntry<String> cacheEntry = new CacheEntry<String>("dude","suman",1);
+
+
+        Mockito.when(cacheProvider.put("dude",cacheEntry)).thenReturn(true);
+
+        Kelly<String> kelly = new Kelly<String>(cacheProvider,cacheLoader,1);
+
+        assert kelly.put("dude",cacheEntry);
+
+        Mockito.verify(cacheProvider).put("dude", cacheEntry);
+
     }
 
 }
