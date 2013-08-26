@@ -76,9 +76,11 @@ public class KellyTest {
 
         assert kelly.get("dude").equals("suman karthik");
 
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         assert kelly.get("dude").equals("suman karthik");
+
+        Thread.sleep(1000);
 
         Mockito.verify(cacheLoader).reload("dude","suman karthik");
 

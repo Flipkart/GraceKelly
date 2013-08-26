@@ -24,7 +24,6 @@ public class Kelly<T>{
     }
 
     public T get(String key) throws KellyException {
-
         CacheEntry<T> cacheEntry = null;
         try {
             cacheEntry = cacheProvider.get(key);
@@ -58,7 +57,7 @@ public class Kelly<T>{
         }
     }
 
-    private boolean cacheEntryExpired(CacheEntry cacheEntry){
+    private boolean cacheEntryExpired(CacheEntry cacheEntry)    {
 
         if (cacheEntry.getTtl()==0)
             return false;
@@ -67,7 +66,7 @@ public class Kelly<T>{
         long currentTime = System.currentTimeMillis()/1000;
         long ttl = cacheEntry.getTtl();
 
-        if ((entryTimeStamp+ttl) < currentTime)
+        if ((entryTimeStamp+ttl) > currentTime)
             return false;
         else
             return true;
