@@ -1,4 +1,4 @@
-package lego.gracekelly.helpers;
+package lego.gracekelly;
 
 
 import lego.gracekelly.Kelly;

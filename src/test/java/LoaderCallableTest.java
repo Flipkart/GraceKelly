@@ -4,7 +4,7 @@ import lego.gracekelly.api.CacheProvider;
 import lego.gracekelly.entities.CacheEntry;
 import lego.gracekelly.exceptions.CacheLoaderException;
 import lego.gracekelly.exceptions.CacheProviderException;
-import lego.gracekelly.helpers.LoaderCallable;
+import lego.gracekelly.LoaderCallable;
 import org.mockito.Mockito;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
