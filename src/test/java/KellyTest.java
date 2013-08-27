@@ -137,7 +137,7 @@ public class KellyTest {
 
     }
 
-    @Test
+    @Test(singleThreaded = true)
     public void requestsInFlightTest() throws InterruptedException, CacheProviderException, KellyException {
 
 
@@ -159,6 +159,26 @@ public class KellyTest {
         Thread.sleep(1000);
 
         assert DummyCacheLoader.invocations==1;
+    }
+
+    @Test(dependsOnMethods = {"requestsInFlightTest"})
+    public void expireTest() throws KellyException, CacheProviderException, InterruptedException {
+
+        CacheEntry<String> cacheEntry = new CacheEntry<String>("dude","suman",300);
+
+        CacheProvider<String> cacheProvider = new DummyCacheProvider();
+        CacheLoader<String> cacheLoader = new DummyCacheLoader();
+
+        Kelly<String> kelly = new Kelly<String>(cacheProvider,cacheLoader,10);
+
+        kelly.put("dude",cacheEntry);
+
+        kelly.expire("dude");
+        assert cacheProvider.get("dude").getTtl()==-10;
+
+        Thread.sleep(4000);
+
+        assert kelly.get("dude").equals("suman karthik");
     }
 
 }

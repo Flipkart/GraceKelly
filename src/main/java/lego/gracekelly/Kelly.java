@@ -59,6 +59,13 @@ public class Kelly<T>{
         }
     }
 
+    public void expire(String key) throws KellyException {
+        T value = get(key);
+        CacheEntry<T> cacheEntry = new CacheEntry<T>(key,value,-10);//expired cache entry
+        put(key,cacheEntry);
+        get(key);
+    }
+
     private boolean cacheEntryExpired(CacheEntry cacheEntry)    {
 
         if (cacheEntry.getTtl()==0)
