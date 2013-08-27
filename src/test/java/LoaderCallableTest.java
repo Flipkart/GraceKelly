@@ -1,3 +1,4 @@
+import lego.gracekelly.Kelly;
 import lego.gracekelly.api.CacheLoader;
 import lego.gracekelly.api.CacheProvider;
 import lego.gracekelly.entities.CacheEntry;
@@ -38,7 +39,8 @@ public class LoaderCallableTest {
     public void testCallable() throws CacheProviderException, InterruptedException, ExecutionException {
 
         ExecutorService executorService = Executors.newSingleThreadExecutor();
-        LoaderCallable loaderCallable = new LoaderCallable(cacheProvider,cacheLoader, cacheEntry);
+        Kelly<String> kelly = Mockito.mock(Kelly.class);
+        LoaderCallable loaderCallable = new LoaderCallable(kelly,cacheProvider,cacheLoader, cacheEntry);
         Future cacheLoaded = executorService.submit(loaderCallable);
 
         Thread.sleep(500);
