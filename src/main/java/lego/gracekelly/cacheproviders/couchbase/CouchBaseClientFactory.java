@@ -16,16 +16,18 @@ public class CouchBaseClientFactory {
 
     /**
      * Creates and returns {@link CouchbaseClient} based on the parameters provided.
-     * @param url
+     * @param urls
      * @param bucketName
      * @param password
      * @return {@link CouchbaseClient} instance.
      * @throws IOException
      */
-    public static CouchbaseClient getCouchBaseClient(String url, String bucketName, String password) throws IOException {
+    public static CouchbaseClient getCouchBaseClient(String[] urls, String bucketName, String password) throws IOException {
 
         List<URI> uris = new ArrayList<URI>();
-        uris.add(URI.create(url));
+        for (String url: urls){
+            uris.add(URI.create(url));
+        }
 
         CouchbaseConnectionFactoryBuilder builder = new CouchbaseConnectionFactoryBuilder();
         CouchbaseClient couchbaseClient = new CouchbaseClient(builder.buildCouchbaseConnection(uris,bucketName,password));
