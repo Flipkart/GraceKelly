@@ -14,22 +14,42 @@
  * limitations under the License.
  */
 
+package lego.gracekelly.examples.basic;
+
+
 import lego.gracekelly.api.CacheProvider;
 import lego.gracekelly.entities.CacheEntry;
 import lego.gracekelly.exceptions.CacheProviderException;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
-public class DummyCacheProvider implements CacheProvider<String>{
+/**
+ * Simple {@link CacheProvider} that uses a ConcurrentHashMap to provide
+ * a cache implementation for Kelly
+ */
+public class LocalCacheProvider implements CacheProvider<String>{
 
-    private final Map<String,CacheEntry<String>> cache = new HashMap<String, CacheEntry<String>>();
+    private final Map<String,CacheEntry<String>> cache = new ConcurrentHashMap<String,CacheEntry<String>>();
 
+    /**
+     * returns the {@link CacheEntry<String>} stored against a given key
+     * @param key
+     * @return {@link CacheEntry} with the appropriate value
+     * @throws CacheProviderException
+     */
     @Override
     public CacheEntry<String> get(String key) throws CacheProviderException {
-        return cache.get(key);
+        return cache.get("key");
     }
 
+    /**
+     * puts the given {@link CacheEntry<String>} against the given key in the underlying cache
+     * @param key
+     * @param value
+     * @return true
+     * @throws CacheProviderException
+     */
     @Override
     public Boolean put(String key, CacheEntry<String> value) throws CacheProviderException {
         cache.put(key,value);

@@ -14,27 +14,13 @@
  * limitations under the License.
  */
 
-package lego.gracekelly.exceptions;
+package lego.gracekelly.examples.basic;
 
 /**
- * Exceptions thrown during Kelly operations
+ * A simple service that spits out gibberish
  */
-public class KellyException extends Exception{
-
-    public  KellyException(){
-        super();
+public class GibberishService {
+    public static String getGibberish(String prefix){
+        return prefix + Long.toString(System.currentTimeMillis()/1000);
     }
-
-    public KellyException(String message){
-        super(message);
-    }
-
-    public KellyException(Throwable cause){
-        super(cause);
-    }
-
-    public KellyException(String message, Throwable cause){
-        super(message,cause);
-    }
-
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2013 Flipkart, Inc.
+ * Copyright 2013 Flipkart Internet, pvt ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
