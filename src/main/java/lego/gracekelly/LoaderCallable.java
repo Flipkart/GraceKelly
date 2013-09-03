@@ -1,13 +1,17 @@
 package lego.gracekelly;
 
 
-import lego.gracekelly.Kelly;
 import lego.gracekelly.api.CacheLoader;
 import lego.gracekelly.api.CacheProvider;
 import lego.gracekelly.entities.CacheEntry;
 
 import java.util.concurrent.Callable;
 
+/**
+ * The callable that is used by {@link Kelly} to reload the {@link CacheProvider} with a {@link CacheEntry}
+ * using the provided {@link CacheLoader}
+ * @param <T>
+ */
 public class LoaderCallable<T> implements Callable {
 
     private final CacheLoader<T> cacheLoader;

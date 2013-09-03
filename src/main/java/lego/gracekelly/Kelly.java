@@ -91,11 +91,20 @@ public class Kelly<T>{
      */
     public void expire(String key) throws KellyException {
         T value = get(key);
-        CacheEntry<T> cacheEntry = new CacheEntry<T>(key,value,-10);//expired cache entry
+        /*create an expired cache entry*/
+        CacheEntry<T> cacheEntry = new CacheEntry<T>(key,value,-10);
+        /*put it into the cache, because if the refresh fails now, kelly
+        * will try to refresh it the next time a get is called on the entry's key*/
         put(key,cacheEntry);
+        /*Try to refresh the entry for the given key*/
         get(key);
     }
 
+    /**
+     * Takes a {@link CacheEntry} as input and determines wether it has expired or not.
+     * @param cacheEntry
+     * @return true of the entry has expired false if it has not
+     */
     private boolean cacheEntryExpired(CacheEntry cacheEntry)    {
 
         if (cacheEntry.getTtl()==0)
@@ -105,26 +114,48 @@ public class Kelly<T>{
         long currentTime = System.currentTimeMillis()/1000;
         long ttl = cacheEntry.getTtl();
 
+        /* is the currentTime greater than when the CacheEntry would have expired? */
         if ((entryTimeStamp+ttl) > currentTime)
             return false;
         else
             return true;
     }
 
+    /**
+     * Executes the LoaderCallable using the executorService.
+     * @param cacheEntry
+     * @throws ExecutionException
+     * @throws InterruptedException
+     */
     private void reloadCacheEntry(CacheEntry cacheEntry) throws ExecutionException, InterruptedException {
         LoaderCallable<T> loaderCallable = new LoaderCallable<T>(this, cacheProvider, cacheLoader, cacheEntry);
         executorService.submit(loaderCallable);
     }
 
+    /**
+     * Checks whether request is in flight for refreshing a given CacheEntry
+     * @param cacheEntry
+     * @return true if the the request is in flight or false if the request isn't in flight.
+     */
     private boolean requestInFlight(CacheEntry<T> cacheEntry){
         return requestsInFlight.containsKey(cacheEntry.getKey());
     }
 
+    /**
+     * Puts a request in flight for refreshing a given CacheEntry
+     * at any given time, no more than one request should be in flight
+     * to refresh a CacheEntry
+     * @param cacheEntry
+     */
     private void putRequestInFlight(CacheEntry<T> cacheEntry){
         requestsInFlight.put(cacheEntry.getKey(),true);
     }
 
-
+    /**
+     * removes a request from being in flight to allow a subsequent request for
+     * the same key to be put in flight.
+     * @param cacheEntry
+     */
     protected void removeRequestInFlight(CacheEntry<T> cacheEntry){
         synchronized (requestsInFlight) {
             requestsInFlight.remove(cacheEntry.getKey());

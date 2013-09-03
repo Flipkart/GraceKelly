@@ -50,16 +50,6 @@
                     <version>2.5.2</version>
                     <configuration>
                         <aggregate>true</aggregate>
-                        <instrumentation>
-                            <!-- <ignores>
-                                <ignore>lego.gracekelly.exceptions.*</ignore>
-                                <ignore>lego.gracekelly.api.*</ignore>
-                            </ignores> -->
-                            <!-- <excludes>
-                                <exclude>lego/gracekelly/*.class</exclude>
-                                <exclude>lego/gracekelly/api/*.class</exclude>
-                            </excludes> -->
-                        </instrumentation>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -74,36 +64,9 @@
         </pluginManagement>
     </build>
 
-    <distributionManagement>
-        <repository>
-            <id>central</id>
-            <name>libs-releases</name>
-            <url>http://artifactory.nm.flipkart.com:8081/artifactory/libs-releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <name>libs-snapshots</name>
-            <url>http://artifactory.nm.flipkart.com:8081/artifactory/libs-snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
-
     <repositories>
         <repository>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
             <id>central</id>
-            <name>libs-releases</name>
-            <url>http://artifactory.nm.flipkart.com:8081/artifactory/libs-releases</url>
-        </repository>
-        <repository>
-            <snapshots/>
-            <id>snapshots</id>
-            <name>libs-snapshots</name>
-            <url>http://artifactory.nm.flipkart.com:8081/artifactory/libs-snapshots</url>
-        </repository>
-        <repository>
-            <id>maven-central</id>
             <name>Maven Central Repo</name>
             <url>http://repo1.maven.org/maven2/</url>
         </repository>
@@ -111,18 +74,13 @@
 
     <pluginRepositories>
         <pluginRepository>
+            <id>central</id>
+            <name>Maven Plugin Repository</name>
+            <url>http://repo1.maven.org/maven2</url>
+            <layout>default</layout>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
-            <id>central</id>
-            <name>plugins-releases</name>
-            <url>http://artifactory.nm.flipkart.com:8081/artifactory/plugins-releases</url>
-        </pluginRepository>
-        <pluginRepository>
-            <snapshots/>
-            <id>snapshots</id>
-            <name>plugins-snapshots</name>
-            <url>http://artifactory.nm.flipkart.com:8081/artifactory/plugins-snapshots</url>
         </pluginRepository>
     </pluginRepositories>
 </project>
