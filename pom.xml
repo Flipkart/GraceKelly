@@ -8,9 +8,9 @@
     <artifactId>gracekelly</artifactId>
     <packaging>pom</packaging>
     <version>1.2.1</version>
-    <modules>
+    <!-- <modules>
         <module>Examples</module>
-    </modules>
+    </modules> -->
     <dependencies>
         <dependency>
             <groupId>org.mockito</groupId>
