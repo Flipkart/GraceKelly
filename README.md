@@ -67,14 +67,14 @@ GraceKelly tries it’s best to refresh the cache entry that has
 expired. The refresh lifecycle is purely request triggered and doesn’t
 monitor/maintain the cache. For every request
 
-    - It looks up the cache and returns the value if a cache entry is present.
-    - If the returned cache entry has expired it dispatches a task to refresh the cache entry.
-    - If for some reason the refresh fails, it can extend the ttl of the existing entry or do nothing.
+- It looks up the cache and returns the value if a cache entry is present.
+- If the returned cache entry has expired it dispatches a task to refresh the cache entry.
+- If for some reason the refresh fails, it can extend the ttl of the existing entry or do nothing.
 
 Note that a cache entry is never removed(though it can be evicted by
 size constraints).
 
 This does two things.
 
-    - Shields the backend services and systems from exposure to unnecessary request load.  
-    - Decouples response SLAs from backend degradation and availability concerns, there by allowing for graceful degradation with stale data as fallback.
+- Shields the backend services and systems from exposure to unnecessary request load.  
+- Decouples response SLAs from backend degradation and availability concerns, there by allowing for graceful degradation with stale data as fallback.
