@@ -28,7 +28,7 @@ import lego.gracekelly.exceptions.CacheLoaderException;
 public interface CacheLoader<T> {
 
     /**
-     * Takes a {@link String} key and an value/Object of type <T> and returns a {@link CacheEntry}<T>. The
+     * Takes a {@link String} key and a value/Object of type <T> and returns a {@link CacheEntry}<T>. The
      * implementation of this method is supposed to return the CacheEntry with the latest Value for the given key.
      * @param key
      * @param prevValue

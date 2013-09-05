@@ -125,11 +125,13 @@ previous value of the CacheEntry.
 public interface CacheLoader<T> {
 
     /**
-     * Takes a {@link String} key and an value/Object of type <T> and returns a {@link CacheEntry}<T>. The
-     * implementation of this method is supposed to return the CacheEntry with the latest Value for the given key.
+     * Takes a {@link String} key and a value/Object of type <T> and returns a
+     * {@link CacheEntry}<T>. The implementation of this method is supposed to
+     * return the CacheEntry with the latest Value for the given key.
      * @param key
      * @param prevValue
-     * @return {@link CacheEntry} of the type parameter specified during declaration of this instance of CacheLoader
+     * @return {@link CacheEntry} of the type parameter specified during
+     * declaration of this instance of CacheLoader
      * @throws CacheLoaderException
      */
     public CacheEntry<T> reload(String key, T prevValue) throws CacheLoaderException;
