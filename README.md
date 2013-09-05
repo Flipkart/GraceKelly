@@ -141,4 +141,13 @@ public interface CacheLoader<T> {
 ####CacheEntry
 The CacheEntry class is a simple java object that holds data required to get, put and invalidate a
 cache entry. The generic parameter indicates the type of the object that'll be store against the
-given key.
+given key. usage is as follows, where the **ttl is in seconds**
+
+```java
+//cache entry valid for 5 minutes since time of creation
+CacheEntry<SomeObject> cacheEntry = new CacheEntry<SomeObject>("key", someObject, 300);
+
+String key = cacheEntry.getKey() //returns the key of the CacheEntry
+SomeObject = cahceEntry.getValue() //returns value of the CacheEntry
+long ttl = cacheEntry.getTtl() //returns the ttl in seconds
+```
