@@ -95,7 +95,8 @@ are finally persisted and retrieved from. For eg: one would implement a CachePro
 
 public interface CacheProvider <T>{
     /**
-     * Returns a {@link CacheEntry}<T> if it is present in the underlying cache, or it returns a null otherwise.
+     * Returns a {@link CacheEntry}<T> if it is present in the underlying cache,
+     * or it returns a null otherwise.
      * @param key
      * @return {@link CacheEntry}<T> for the given key or return null if not present
      * @throws CacheProviderException
