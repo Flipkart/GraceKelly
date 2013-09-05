@@ -87,11 +87,12 @@ two different interfaces a **CacheProvider** and a
 
 ####Cache Provider
 
-```
-/**
- * The CacheProvider interface is used to implement adapters to different cache implementations where the cached values
- * are finally persisted and retrieved from. For eg: one would implement a CacheProvider for couchbase or memcached.
- */
+The CacheProvider interface is used to implement adapters to different cache implementations where the cached values
+are finally persisted and retrieved from. For eg: one would implement a CacheProvider for couchbase or memcached.
+
+
+```java
+
 public interface CacheProvider <T>{
     /**
      * Returns a {@link CacheEntry}<T> if it is present in the underlying cache, or it returns a null otherwise.
