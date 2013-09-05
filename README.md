@@ -1,4 +1,5 @@
-#GraceKelly: best effort cache synchronization library for distributed systems
+#GraceKelly
+####a best effort cache synchronization library for distributed systems
 
 GraceKelly is a best effort cache synchronization library designed to
 shield distributed systems and services from direct exposure to
