@@ -23,7 +23,7 @@ chaotic place
 This chaos means the predictability of load and latency is
 reduced. This makes the environment and it’s SLAs vulnerable to
 arbitrary request loads. It’s necessary to shield the environment from
-such externally triggered unpredictability. Since service SLAs are
+such externally induced unpredictability. Since service SLAs are
 affected by service load, such shielding also ensures their
 predictability. This means one must systemically strive to hold on to
 as much predictability as possible when building a service/system.
