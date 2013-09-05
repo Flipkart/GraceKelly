@@ -85,7 +85,7 @@ The library has a single Class **Kelly** that takes implementations of
 two different interfaces a **CacheProvider** and a
 **CacheLoader**. They passaround a **CacheEntry**
 
-####Cache Provider
+####CacheProvider
 
 The CacheProvider interface is used to implement adapters to different cache implementations where the cached values
 are finally persisted and retrieved from. For eg: one would implement a CacheProvider for couchbase or memcached.
@@ -115,7 +115,7 @@ public interface CacheProvider <T>{
 }
 ```
 
-####Cache Loader
+####CacheLoader
 
 The CacheLoader provides a single method to reload cache, based on an existing entry in the cache.
 The implementation of CacheLoader should be able to reload the cache given the key of the and the
@@ -137,3 +137,8 @@ public interface CacheLoader<T> {
     public CacheEntry<T> reload(String key, T prevValue) throws CacheLoaderException;
 }
 ```
+
+####CacheEntry
+The CacheEntry class is a simple java object that holds data required to get, put and invalidate a
+cache entry. The generic parameter indicates the type of the object that'll be store against the
+given key.
