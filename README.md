@@ -10,7 +10,9 @@ ecosystem.
 
 ##Why is it needed?
 
-####A chaotic place Any big distributed environment is inherently
+####A chaotic place
+
+Any big distributed environment is inherently
 complex and chaotic. This complexity arises due to the complex
 dependencies between different services. The variability of the
 requests and responses that this environment is exposed to makes it a
