@@ -83,7 +83,7 @@ This does two things.
 
 The library has a single Class **Kelly** that takes implementations of
 two different interfaces a **CacheProvider** and a
-**CacheLoader**. They passaround a **CacheEntry**
+**CacheLoader**. They pass around a **CacheEntry**
 
 ####Kelly
 
