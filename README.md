@@ -85,6 +85,60 @@ The library has a single Class **Kelly** that takes implementations of
 two different interfaces a **CacheProvider** and a
 **CacheLoader**. They passaround a **CacheEntry**
 
+####Kelly
+
+Kelly is the primary class for Gracekelly that reloads cacheEntries when they expire.
+It has a very simple interface for usage.
+
+```java
+    /**
+    * obtain an instance of a CacheProvider implementation
+    * here the RemoteCache can be a wrapper to some kind of
+    * memcached client.
+    */
+    CacheProvider<CachedObject> cacheProvider = new RemoteCache();
+
+    /**
+    * obtain an instance of a CacheLoader implementation
+    */
+    CacheLoader<CachedObject> cacheLoader = new MyCacheLoader();
+
+    /**
+    * Fix the threadpool size for the number of threads that will
+    * be used to reload cache entries
+    */
+    Integer threadPoolSize = 10;
+
+    /**
+    * Create a kelly reloading cache instance with the provided
+    * cacheProvider, cacheLoader and threadPoolSize
+    */
+    Kelly<CachedObject> cache = new Kelly(cacheProvider, cacheLoader, threadPoolSize);
+
+    String key = "sample_key";
+    CachedObject value = new CachedObject();
+    long expiryTtl = 300;
+
+    /**
+    * Create a CacheEntry instance with the given
+    * key, value and ttl for expiry
+    */
+    CacheEntry cacheEntry = new CacheEntry(key, value, expiryTtl);
+
+    //put a CacheEntry in Cache
+    cache.put(key, cacheEntry);
+
+    //get value from cache
+    CachedObject cachedValue = cache.get(key);
+
+    //expire a cache key
+    cache.expire(key); //doesn't remove from cache
+```
+
+One has to note that expired entries are not replaced as soon as they have expired but
+an attempt is made to refresh them using the CacheLoader the first time an expired
+CacheEntry is encountered during a get request.
+
 ####CacheProvider
 
 The CacheProvider interface is used to implement adapters to different cache implementations where the cached values
@@ -145,9 +199,9 @@ given key. usage is as follows, where the **ttl is in seconds**
 
 ```java
 //cache entry valid for 5 minutes since time of creation
-CacheEntry<SomeObject> cacheEntry = new CacheEntry<SomeObject>("key", someObject, 300);
+CacheEntry<CachedObject> cacheEntry = new CacheEntry<CachedObject>("key", someObject, 300);
 
 String key = cacheEntry.getKey() //returns the key of the CacheEntry
-SomeObject = cahceEntry.getValue() //returns value of the CacheEntry
+CachedObject = cahceEntry.getValue() //returns value of the CacheEntry
 long ttl = cacheEntry.getTtl() //returns the ttl in seconds
 ```
