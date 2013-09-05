@@ -227,3 +227,16 @@ String key = cacheEntry.getKey() //returns the key of the CacheEntry
 CachedObject = cahceEntry.getValue() //returns value of the CacheEntry
 long ttl = cacheEntry.getTtl() //returns the ttl in seconds
 ```
+
+###Documentation
+
+The api docs can be found at [here](http://flipkart.github.io/GraceKelly/docs/index.html)
+
+###Contribution, Bugs and Feedback
+
+## Bugs and Feedback
+
+For bugs, questions and discussions please use the [Github Issues](https://github.com/Flipkart/GraceKelly/issues).
+Please follow the [contribution guidelines](https://github.com/Flipkart/GraceKelly/blob/master/CONTRIBUTING.md) when submitting pull requests.
+
+
