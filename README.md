@@ -232,7 +232,7 @@ long ttl = cacheEntry.getTtl() //returns the ttl in seconds
 
 ##Documentation
 
-The api docs can be found at [here](http://flipkart.github.io/GraceKelly/docs/index.html)
+The api docs can be found [here](http://flipkart.github.io/GraceKelly/docs/index.html)
 
 ##Contribution, Bugs and Feedback
 
