@@ -173,32 +173,16 @@ A trivial CacheProvider implementation for a local cache with a ConcurrentHashMa
 could look like the following.
 
 ```java
-    /**
-     * Simple {@link CacheProvider} that uses a ConcurrentHashMap to provide
-     * a cache implementation for Kelly
-     */
+
     public class LocalCacheProvider implements CacheProvider<String>{
 
         private final Map<String,CacheEntry<String>> cache = new ConcurrentHashMap<String,CacheEntry<String>>();
 
-        /**
-         * returns the {@link CacheEntry<String>} stored against a given key
-         * @param key
-         * @return {@link CacheEntry} with the appropriate value
-         * @throws CacheProviderException
-         */
         @Override
         public CacheEntry<String> get(String key) throws CacheProviderException {
             return cache.get("key");
         }
 
-        /**
-         * puts the given {@link CacheEntry<String>} against the given key in the underlying cache
-         * @param key
-         * @param value
-         * @return true
-         * @throws CacheProviderException
-         */
         @Override
         public Boolean put(String key, CacheEntry<String> value) throws CacheProviderException {
             cache.put(key,value);
