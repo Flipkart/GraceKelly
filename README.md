@@ -8,7 +8,7 @@ predictability in distributed environments. It also enables graceful
 degradation with stale data as fallback, in a degraded distributed
 ecosystem.
 
-###Why is it needed?
+##Why is it needed?
 
 ####A chaotic place Any big distributed environment is inherently
 complex and chaotic. This complexity arises due to the complex
@@ -61,7 +61,7 @@ semantics but one that accommodates refreshing a cache entry rather
 than expiring it based on ttl. This is exactly what GraceKelly is,
 it’s inspired by Gooogle Guava’s LoadingCache.
 
-###What does it do?
+##What does it do?
 
 GraceKelly tries it’s best to refresh the cache entry that has
 expired. The refresh lifecycle is purely request triggered and doesn’t
@@ -79,7 +79,7 @@ This does two things.
 - Shields the backend services and systems from exposure to unnecessary request load.  
 - Decouples response SLAs from backend degradation and availability concerns, there by allowing for graceful degradation with stale data as fallback.
 
-###The Library
+##The Library
 
 The library has a single Class **Kelly** that takes implementations of
 two different interfaces a **CacheProvider** and a
