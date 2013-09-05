@@ -216,7 +216,7 @@ public interface CacheLoader<T> {
 
 ####CacheEntry
 The CacheEntry class is a simple java object that holds data required to get, put and invalidate a
-cache entry. The generic parameter indicates the type of the object that'll be store against the
+cache entry. The generic parameter indicates the type of the object that will be stored against the
 given key. usage is as follows, where the **ttl is in seconds**
 
 ```java
@@ -237,4 +237,20 @@ The api docs can be found at [here](http://flipkart.github.io/GraceKelly/docs/in
 For bugs, questions and discussions please use the [Github Issues](https://github.com/Flipkart/GraceKelly/issues).
 Please follow the [contribution guidelines](https://github.com/Flipkart/GraceKelly/blob/master/CONTRIBUTING.md) when submitting pull requests.
 
+
+##License
+
+Copyright 2013 Flipkart Internet, pvt ltd.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 
