@@ -79,7 +79,7 @@ This does two things.
 - Shields the backend services and systems from exposure to unnecessary request load.  
 - Decouples response SLAs from backend degradation and availability concerns, there by allowing for graceful degradation with stale data as fallback.
 
-###Hello World
+###The Library
 
 The library has a single Class **Kelly** that takes implementations of
 two different interfaces a **CacheProvider** and a
@@ -112,5 +112,26 @@ public interface CacheProvider <T>{
      * @throws CacheProviderException
      */
     Boolean put(String key, CacheEntry<T> value) throws CacheProviderException;
+}
+```
+
+####Cache Loader
+
+The CacheLoader provides a single method to reload cache, based on an existing entry in the cache.
+The implementation of CacheLoader should be able to reload the cache given the key of the and the
+previous value of the CacheEntry.
+
+```java
+public interface CacheLoader<T> {
+
+    /**
+     * Takes a {@link String} key and an value/Object of type <T> and returns a {@link CacheEntry}<T>. The
+     * implementation of this method is supposed to return the CacheEntry with the latest Value for the given key.
+     * @param key
+     * @param prevValue
+     * @return {@link CacheEntry} of the type parameter specified during declaration of this instance of CacheLoader
+     * @throws CacheLoaderException
+     */
+    public CacheEntry<T> reload(String key, T prevValue) throws CacheLoaderException;
 }
 ```
