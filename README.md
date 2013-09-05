@@ -47,9 +47,9 @@ proxy/trigger for cache synchronization exposes the underlying system
 to potentially harmful request pattern load for the duration of
 synchronization.
 
-t0 – a heavily requested cache entry c1 expires
-t1 – there is a cache miss for c1 and a request is sent to the service to fulfill
-t2 – the cache has been repopulated with c2
+- t0 – a heavily requested cache entry c1 expires
+- t1 – there is a cache miss for c1 and a request is sent to the service to fulfill
+- t2 – the cache has been repopulated with c2
 
 The time between t1 and t2 is the duration of exposure. The
 predictability of the target service and all the services it depends
