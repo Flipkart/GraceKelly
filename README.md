@@ -58,7 +58,7 @@ predictability of the target service and all the services it depends
 on during this time is affected by the the per request load and the
 qps of all requests that result in a cache miss for c1.
 
-<img src="https://img2a.flixcart.com//www/promos/new/20130906-134921-cache-expiry.png" style="background-color: #fff;">
+<img src="https://img1a.flixcart.com//www/promos/new/20130906-135948-cache-expiry.jpg" style="background-color: #fff;">
 
 What would be good to have is a cache library with regular caching
 semantics but one that accommodates refreshing a cache entry rather
@@ -83,7 +83,7 @@ This does two things.
 - Shields the backend services and systems from exposure to unnecessary request load.  
 - Decouples response SLAs from backend degradation and availability concerns, there by allowing for graceful degradation with stale data as fallback.
 
-<img src="https://img2a.flixcart.com//www/promos/new/20130906-134902-cache-refresh.png" style="background-color: #fff;">
+<img src="https://img1a.flixcart.com//www/promos/new/20130906-135939-cache-refresh.jpg" style="background-color: #fff;">
 
 ##The Library
 
