@@ -25,7 +25,7 @@ reduced. This makes the environment and it’s SLAs vulnerable to
 arbitrary request loads. It’s necessary to shield the environment from
 such externally induced unpredictability. Since service SLAs are
 affected by service load, such shielding also ensures their
-predictability. This means one must systemically strive to hold on to
+predictability. This means, one must systemically strive to hold on to
 as much predictability as possible when building a service/system.
 
 ####Sheilds up
@@ -58,6 +58,8 @@ predictability of the target service and all the services it depends
 on during this time is affected by the the per request load and the
 qps of all requests that result in a cache miss for c1.
 
+<img src="https://img2a.flixcart.com//www/promos/new/20130906-134921-cache-expiry.png" style="background-color: #fff;">
+
 What would be good to have is a cache library with regular caching
 semantics but one that accommodates refreshing a cache entry rather
 than expiring it based on ttl. This is exactly what GraceKelly is,
@@ -80,6 +82,8 @@ This does two things.
 
 - Shields the backend services and systems from exposure to unnecessary request load.  
 - Decouples response SLAs from backend degradation and availability concerns, there by allowing for graceful degradation with stale data as fallback.
+
+<img src="https://img2a.flixcart.com//www/promos/new/20130906-134902-cache-refresh.png" style="background-color: #fff;">
 
 ##The Library
 
