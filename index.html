@@ -68,9 +68,9 @@ chaotic place</p>
 <p>This chaos means the predictability of load and latency is
 reduced. This makes the environment and it’s SLAs vulnerable to
 arbitrary request loads. It’s necessary to shield the environment from
-such externally triggered unpredictability. Since service SLAs are
+such externally induced unpredictability. Since service SLAs are
 affected by service load, such shielding also ensures their
-predictability. This means one must systemically strive to hold on to
+predictability. This means, one must systemically strive to hold on to
 as much predictability as possible when building a service/system.</p>
 
 <h4>
@@ -108,6 +108,8 @@ predictability of the target service and all the services it depends
 on during this time is affected by the the per request load and the
 qps of all requests that result in a cache miss for c1.</p>
 
+<p><img src="https://img1a.flixcart.com//www/promos/new/20130906-135948-cache-expiry.jpg"></p>
+
 <p>What would be good to have is a cache library with regular caching
 semantics but one that accommodates refreshing a cache entry rather
 than expiring it based on ttl. This is exactly what GraceKelly is,
@@ -133,7 +135,9 @@ size constraints).</p>
 <li>Shields the backend services and systems from exposure to unnecessary request load.<br>
 </li>
 <li>Decouples response SLAs from backend degradation and availability concerns, there by allowing for graceful degradation with stale data as fallback.</li>
-</ul><h2>
+</ul><p><img src="https://img1a.flixcart.com//www/promos/new/20130906-135939-cache-refresh.jpg"></p>
+
+<h2>
 <a name="the-library" class="anchor" href="#the-library"><span class="octicon octicon-link"></span></a>The Library</h2>
 
 <p>The library has a single Class <strong>Kelly</strong> that takes implementations of
