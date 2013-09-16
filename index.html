@@ -150,7 +150,7 @@ two different interfaces a <strong>CacheProvider</strong> and a
 <p>Kelly is the primary class for Gracekelly that reloads cacheEntries when they expire.
 It has a very simple interface for usage.</p>
 
-<div class="highlight"><pre>    <span class="cm">/**</span>
+<div class="highlight highlight-java"><pre>    <span class="cm">/**</span>
 <span class="cm">    * obtain an instance of a CacheProvider implementation</span>
 <span class="cm">    * here the RemoteCache can be a wrapper to some kind of</span>
 <span class="cm">    * memcached client.</span>
@@ -204,7 +204,7 @@ CacheEntry is encountered during a get request.</p>
 <p>The CacheProvider interface is used to implement adapters to different cache implementations where the cached values
 are finally persisted and retrieved from. For eg: one would implement a CacheProvider for couchbase or memcached.</p>
 
-<div class="highlight"><pre>
+<div class="highlight highlight-java"><pre>
 <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">CacheProvider</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;{</span>
     <span class="cm">/**</span>
 <span class="cm">     * Returns a {@link CacheEntry}&lt;T&gt; if it is present in the underlying cache,</span>
@@ -230,7 +230,7 @@ are finally persisted and retrieved from. For eg: one would implement a CachePro
 <p>A trivial CacheProvider implementation for a local cache with a ConcurrentHashMap
 could look like the following.</p>
 
-<div class="highlight"><pre>
+<div class="highlight highlight-java"><pre>
     <span class="kd">public</span> <span class="kd">class</span> <span class="nc">LocalCacheProvider</span> <span class="kd">implements</span> <span class="n">CacheProvider</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;{</span>
 
         <span class="kd">private</span> <span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span><span class="n">CacheEntry</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">cache</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcurrentHashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span><span class="n">CacheEntry</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;();</span>
@@ -255,7 +255,7 @@ could look like the following.</p>
 The implementation of CacheLoader should be able to reload the cache given the key of the and the
 previous value of the CacheEntry.</p>
 
-<div class="highlight"><pre><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">CacheLoader</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+<div class="highlight highlight-java"><pre><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">CacheLoader</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
 
     <span class="cm">/**</span>
 <span class="cm">     * Takes a {@link String} key and a value/Object of type &lt;T&gt; and returns a</span>
@@ -278,12 +278,33 @@ previous value of the CacheEntry.</p>
 cache entry. The generic parameter indicates the type of the object that will be stored against the
 given key. usage is as follows, where the <strong>ttl is in seconds</strong></p>
 
-<div class="highlight"><pre><span class="c1">//cache entry valid for 5 minutes since time of creation</span>
+<div class="highlight highlight-java"><pre><span class="c1">//cache entry valid for 5 minutes since time of creation</span>
 <span class="n">CacheEntry</span><span class="o">&lt;</span><span class="n">CachedObject</span><span class="o">&gt;</span> <span class="n">cacheEntry</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CacheEntry</span><span class="o">&lt;</span><span class="n">CachedObject</span><span class="o">&gt;(</span><span class="s">"key"</span><span class="o">,</span> <span class="n">someObject</span><span class="o">,</span> <span class="mi">300</span><span class="o">);</span>
 
 <span class="n">String</span> <span class="n">key</span> <span class="o">=</span> <span class="n">cacheEntry</span><span class="o">.</span><span class="na">getKey</span><span class="o">()</span> <span class="c1">//returns the key of the CacheEntry</span>
 <span class="n">CachedObject</span> <span class="o">=</span> <span class="n">cahceEntry</span><span class="o">.</span><span class="na">getValue</span><span class="o">()</span> <span class="c1">//returns value of the CacheEntry</span>
 <span class="kt">long</span> <span class="n">ttl</span> <span class="o">=</span> <span class="n">cacheEntry</span><span class="o">.</span><span class="na">getTtl</span><span class="o">()</span> <span class="c1">//returns the ttl in seconds</span>
+</pre></div>
+
+<h2>
+<a name="maven-artifact" class="anchor" href="#maven-artifact"><span class="octicon octicon-link"></span></a>Maven Artifact</h2>
+
+<p>Add the following repository to your pom.xml</p>
+
+<div class="highlight highlight-xml"><pre>    <span class="nt">&lt;repository&gt;</span>
+      <span class="nt">&lt;id&gt;</span>clojars<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;name&gt;</span>Clojars repository<span class="nt">&lt;/name&gt;</span>
+      <span class="nt">&lt;url&gt;</span>https://clojars.org/repo<span class="nt">&lt;/url&gt;</span>
+    <span class="nt">&lt;/repository&gt;</span>
+</pre></div>
+
+<p>And add the following dependency to start using GraceKelly in your maven project.</p>
+
+<div class="highlight highlight-xml"><pre>   <span class="nt">&lt;dependency&gt;</span>
+     <span class="nt">&lt;groupId&gt;</span>com.flipkart.lego<span class="nt">&lt;/groupId&gt;</span>
+     <span class="nt">&lt;artifactId&gt;</span>gracekelly<span class="nt">&lt;/artifactId&gt;</span>
+     <span class="nt">&lt;version&gt;</span>1.2.1<span class="nt">&lt;/version&gt;</span>
+   <span class="nt">&lt;/dependency&gt;</span>
 </pre></div>
 
 <h2>
