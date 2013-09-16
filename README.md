@@ -234,6 +234,28 @@ CachedObject = cahceEntry.getValue() //returns value of the CacheEntry
 long ttl = cacheEntry.getTtl() //returns the ttl in seconds
 ```
 
+##Maven Artifact
+
+Add the following repository to your pom.xml
+
+```xml
+    <repository>
+      <id>clojars</id>
+      <name>Clojars repository</name>
+      <url>https://clojars.org/repo</url>
+    </repository>
+```
+
+And add the following dependency to start using GraceKelly in your maven project.
+
+```xml
+   <dependency>
+     <groupId>com.flipkart.lego</groupId>
+     <artifactId>gracekelly</artifactId>
+     <version>1.2.1</version>
+   </dependency>
+```
+
 ##Documentation
 
 The api docs can be found [here](http://flipkart.github.io/GraceKelly/docs/index.html)

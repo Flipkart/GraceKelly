@@ -15,6 +15,14 @@
         <tag>HEAD</tag>
         <url>https://github.com/Flipkart/GraceKelly</url>
     </scm>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
     <dependencies>
         <dependency>
             <groupId>org.mockito</groupId>
