@@ -7,6 +7,14 @@
     <groupId>com.flipkart.lego</groupId>
     <artifactId>gracekelly</artifactId>
     <version>1.2.1</version>
+    <description>A best effort cache synchronization library</description>
+    <url>http://flipkart.github.io/GraceKelly/</url>
+    <scm>
+        <connection>scm:git:https://github.com/Flipkart/GraceKelly.git</connection>
+        <developerConnection>scm:git:https://github.com/Flipkart/GraceKelly.git</developerConnection>
+        <tag>HEAD</tag>
+        <url>https://github.com/Flipkart/GraceKelly</url>
+    </scm>
     <dependencies>
         <dependency>
             <groupId>org.mockito</groupId>
@@ -68,6 +76,14 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>clojars</id>
+            <name>Clojars repository</name>
+            <url>https://clojars.org/repo</url>
+        </repository>
+    </distributionManagement>
 
     <repositories>
         <repository>
