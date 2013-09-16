@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package lego.gracekelly.examples.basic;
+package lego.gracekelly.examples;
 
 
 import lego.gracekelly.api.CacheProvider;
