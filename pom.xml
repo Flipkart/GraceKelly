@@ -7,14 +7,17 @@
     <groupId>com.flipkart.lego</groupId>
     <artifactId>gracekelly</artifactId>
     <version>1.2.1</version>
+
     <description>A best effort cache synchronization library</description>
     <url>http://flipkart.github.io/GraceKelly/</url>
+
     <scm>
         <connection>scm:git:https://github.com/Flipkart/GraceKelly.git</connection>
         <developerConnection>scm:git:https://github.com/Flipkart/GraceKelly.git</developerConnection>
         <tag>HEAD</tag>
         <url>https://github.com/Flipkart/GraceKelly</url>
     </scm>
+
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
@@ -23,16 +26,19 @@
             <comments>A business-friendly OSS license</comments>
         </license>
     </licenses>
+
     <dependencies>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <version>1.9.5</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.8</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>couchbase</groupId>
