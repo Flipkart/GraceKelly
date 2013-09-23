@@ -6,6 +6,7 @@
 
     <groupId>com.flipkart.lego</groupId>
     <artifactId>gracekelly</artifactId>
+    <packaging>pom</packaging>
     <version>1.2.1</version>
 
     <description>A best effort cache synchronization library</description>
@@ -17,6 +18,11 @@
         <tag>HEAD</tag>
         <url>https://github.com/Flipkart/GraceKelly</url>
     </scm>
+    <modules>
+        <module>core</module>
+        <module>cache-providers</module>
+        <module>examples</module>
+    </modules>
 
     <licenses>
         <license>
@@ -28,23 +34,6 @@
     </licenses>
 
     <dependencies>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>1.9.5</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.8</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>couchbase</groupId>
-            <artifactId>couchbase-client</artifactId>
-            <version>1.1.9</version>
-        </dependency>
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>

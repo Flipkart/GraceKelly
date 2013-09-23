@@ -3,3 +3,5 @@
 .*
 target/*
 Examples/target/*
+Core/target/*
+CacheProviders/target/*
