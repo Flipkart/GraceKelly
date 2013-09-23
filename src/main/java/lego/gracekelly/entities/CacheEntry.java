@@ -16,6 +16,8 @@
 
 package lego.gracekelly.entities;
 
+import lego.gracekelly.helpers.Ticker;
+
 import java.io.Serializable;
 
 /**
@@ -44,7 +46,7 @@ public final class CacheEntry<T> implements Serializable {
         this.key = key;
         this.value = value;
         this.ttl = ttl;
-        this.epoch_timestamp = System.currentTimeMillis()/1000;
+        this.epoch_timestamp = Ticker.read();
     }
 
     /**

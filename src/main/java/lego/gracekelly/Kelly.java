@@ -21,6 +21,7 @@ import lego.gracekelly.api.CacheProvider;
 import lego.gracekelly.entities.CacheEntry;
 import lego.gracekelly.exceptions.CacheProviderException;
 import lego.gracekelly.exceptions.KellyException;
+import lego.gracekelly.helpers.Ticker;
 
 import java.util.concurrent.*;
 
@@ -127,7 +128,7 @@ public class Kelly<T>{
             return false;
 
         long entryTimeStamp = cacheEntry.getEpoch_timestamp();
-        long currentTime = System.currentTimeMillis()/1000;
+        long currentTime = Ticker.read();
         long ttl = cacheEntry.getTtl();
 
         /* is the currentTime greater than when the CacheEntry would have expired? */
