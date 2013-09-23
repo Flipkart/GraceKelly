@@ -28,7 +28,7 @@ import java.util.concurrent.Callable;
  * using the provided {@link CacheLoader}
  * @param <T>
  */
-public class LoaderCallable<T> implements Callable {
+class LoaderCallable<T> implements Callable {
 
     private final CacheLoader<T> cacheLoader;
     private final CacheProvider<T> cacheProvider;
