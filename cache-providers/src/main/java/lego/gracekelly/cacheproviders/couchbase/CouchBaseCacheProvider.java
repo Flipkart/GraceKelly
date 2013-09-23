@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package lego.gracekelly.couchbase;
+package lego.gracekelly.cacheproviders.couchbase;
 
 
 import com.couchbase.client.CouchbaseClient;
