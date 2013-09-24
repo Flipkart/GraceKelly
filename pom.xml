@@ -7,7 +7,7 @@
     <groupId>com.flipkart.lego</groupId>
     <artifactId>gracekelly</artifactId>
     <packaging>pom</packaging>
-    <version>1.2.2</version>
+    <version>1.2.3</version>
 
     <description>A best effort cache synchronization library</description>
     <url>http://flipkart.github.io/GraceKelly/</url>
