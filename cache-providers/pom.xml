@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.flipkart.lego</groupId>
     <artifactId>gracekelly-cacheproviders</artifactId>
-    <version>1.2.4</version>
+    <version>1.2.5</version>
 
     <dependencies>
         <dependency>
@@ -18,6 +18,11 @@
             <groupId>couchbase</groupId>
             <artifactId>couchbase-client</artifactId>
             <version>1.1.9</version>
+        </dependency>
+        <dependency>
+            <groupId>net.spy</groupId>
+            <artifactId>spymemcached</artifactId>
+            <version>2.9.1</version>
         </dependency>
     </dependencies>
 
