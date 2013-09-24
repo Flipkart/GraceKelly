@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="11" passed="11">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Command line suite" duration-ms="12752" started-at="2013-09-24T10:27:14Z" finished-at="2013-09-24T10:27:27Z">
+    <groups>
+    </groups>
+    <test name="Command line test" duration-ms="12752" started-at="2013-09-24T10:27:14Z" finished-at="2013-09-24T10:27:27Z">
+      <class name="lego.gracekelly.LoaderCallableTest">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:lego.gracekelly.LoaderCallableTest@44c9d92c]" name="setUp" is-config="true" duration-ms="182" started-at="2013-09-24T15:57:14Z" finished-at="2013-09-24T15:57:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="testCallable()[pri:0, instance:lego.gracekelly.LoaderCallableTest@44c9d92c]" name="testCallable" duration-ms="511" started-at="2013-09-24T15:57:22Z" finished-at="2013-09-24T15:57:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCallable -->
+      </class> <!-- lego.gracekelly.LoaderCallableTest -->
+      <class name="lego.gracekelly.KellyTest">
+        <test-method status="PASS" signature="kellyPutTest()[pri:0, instance:lego.gracekelly.KellyTest@16290fbc]" name="kellyPutTest" duration-ms="14" started-at="2013-09-24T15:57:14Z" finished-at="2013-09-24T15:57:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- kellyPutTest -->
+        <test-method status="PASS" signature="noCacheEntryTest()[pri:0, instance:lego.gracekelly.KellyTest@16290fbc]" name="noCacheEntryTest" duration-ms="0" started-at="2013-09-24T15:57:14Z" finished-at="2013-09-24T15:57:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- noCacheEntryTest -->
+        <test-method status="PASS" signature="reloadCacheEntryTest()[pri:0, instance:lego.gracekelly.KellyTest@16290fbc]" name="reloadCacheEntryTest" duration-ms="4005" started-at="2013-09-24T15:57:14Z" finished-at="2013-09-24T15:57:18Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- reloadCacheEntryTest -->
+        <test-method status="PASS" signature="requestsInFlightTest()[pri:0, instance:lego.gracekelly.KellyTest@16290fbc]" name="requestsInFlightTest" duration-ms="3003" started-at="2013-09-24T15:57:18Z" finished-at="2013-09-24T15:57:21Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- requestsInFlightTest -->
+        <test-method status="PASS" signature="ttlZeroTest()[pri:0, instance:lego.gracekelly.KellyTest@16290fbc]" name="ttlZeroTest" duration-ms="1003" started-at="2013-09-24T15:57:21Z" finished-at="2013-09-24T15:57:22Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ttlZeroTest -->
+        <test-method status="PASS" signature="kellyExceptionsTest()[pri:0, instance:lego.gracekelly.KellyTest@16290fbc]" name="kellyExceptionsTest" duration-ms="3" started-at="2013-09-24T15:57:22Z" finished-at="2013-09-24T15:57:22Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- kellyExceptionsTest -->
+        <test-method status="PASS" signature="kellyGetTest()[pri:0, instance:lego.gracekelly.KellyTest@16290fbc]" name="kellyGetTest" duration-ms="1" started-at="2013-09-24T15:57:22Z" finished-at="2013-09-24T15:57:22Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- kellyGetTest -->
+        <test-method status="PASS" signature="expireTest()[pri:0, instance:lego.gracekelly.KellyTest@16290fbc]" name="expireTest" duration-ms="4003" started-at="2013-09-24T15:57:23Z" depends-on-methods="lego.gracekelly.KellyTest.requestsInFlightTest" finished-at="2013-09-24T15:57:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- expireTest -->
+      </class> <!-- lego.gracekelly.KellyTest -->
+      <class name="lego.gracekelly.CacheEntryTest">
+        <test-method status="PASS" signature="cacheEntryWithTTL()[pri:0, instance:lego.gracekelly.CacheEntryTest@2345f0e3]" name="cacheEntryWithTTL" duration-ms="0" started-at="2013-09-24T15:57:14Z" finished-at="2013-09-24T15:57:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cacheEntryWithTTL -->
+        <test-method status="PASS" signature="cacheEntryWithoutTTL()[pri:0, instance:lego.gracekelly.CacheEntryTest@2345f0e3]" name="cacheEntryWithoutTTL" duration-ms="0" started-at="2013-09-24T15:57:14Z" finished-at="2013-09-24T15:57:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cacheEntryWithoutTTL -->
+      </class> <!-- lego.gracekelly.CacheEntryTest -->
+    </test> <!-- Command line test -->
+  </suite> <!-- Command line suite -->
+</testng-results>

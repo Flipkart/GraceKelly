@@ -1,6 +1,7 @@
-
 lego.gracekelly
 lego.gracekelly.api
 lego.gracekelly.cacheproviders.couchbase
 lego.gracekelly.entities
+lego.gracekelly.examples
 lego.gracekelly.exceptions
+lego.gracekelly.helpers
