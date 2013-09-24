@@ -33,7 +33,7 @@
         </license>
     </licenses>
 
-    <dependencies>
+    <!-- <dependencies>
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
@@ -79,6 +79,7 @@
             </plugins>
         </pluginManagement>
     </build>
+    -->
 
     <distributionManagement>
         <repository>
