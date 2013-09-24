@@ -252,7 +252,7 @@ And add the following dependency to start using GraceKelly in your maven project
    <dependency>
      <groupId>com.flipkart.lego</groupId>
      <artifactId>gracekelly-core</artifactId>
-     <version>1.2.4</version>
+     <version>1.2.5</version>
    </dependency>
 ```
 
