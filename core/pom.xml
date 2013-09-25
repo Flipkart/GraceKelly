@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.flipkart.lego</groupId>
     <artifactId>gracekelly-core</artifactId>
-    <version>1.2.6</version>
+    <version>1.2.7</version>
 
     <dependencies>
         <dependency>

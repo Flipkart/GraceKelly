@@ -6,7 +6,7 @@
 
     <artifactId>gracekelly-examples</artifactId>
     <groupId>com.flipkart.lego</groupId>
-    <version>1.2.6</version>
+    <version>1.2.7</version>
 
     <dependencies>
         <dependency>
