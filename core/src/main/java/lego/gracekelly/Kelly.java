@@ -66,10 +66,9 @@ public class Kelly<T>{
         }
 
         if (cacheEntry != null){
-            if(cacheEntryExpired(cacheEntry)) synchronized (requestsInFlight) {
-                if(!requestInFlight(cacheEntry))
+            if(cacheEntryExpired(cacheEntry)){
+                if(putRequestInFlight(cacheEntry))
                     try {
-                        putRequestInFlight(cacheEntry);
                         reloadCacheEntry(cacheEntry);
                     } catch (ExecutionException e) {
                         throw new KellyException(e);
@@ -150,22 +149,21 @@ public class Kelly<T>{
     }
 
     /**
-     * Checks whether request is in flight for refreshing a given CacheEntry
+     * Attempts to put request in flight for a given CacheEntry to reload it
+     * by trying to put it in the {@link ConcurrentHashMap} using putIfAbsent
+     * If put is successful then return true, else return false. This ensures
+     * that two requests to reload the same cache entry are not in flight at
+     * any given time.
      * @param cacheEntry
      * @return true if the the request is in flight or false if the request isn't in flight.
      */
-    private boolean requestInFlight(CacheEntry<T> cacheEntry){
-        return requestsInFlight.containsKey(cacheEntry.getKey());
-    }
-
-    /**
-     * Puts a request in flight for refreshing a given CacheEntry
-     * at any given time, no more than one request should be in flight
-     * to refresh a CacheEntry
-     * @param cacheEntry
-     */
-    private void putRequestInFlight(CacheEntry<T> cacheEntry){
-        requestsInFlight.put(cacheEntry.getKey(),true);
+    private boolean putRequestInFlight(CacheEntry<T> cacheEntry){
+        Object returnValue;
+        returnValue =requestsInFlight.putIfAbsent(cacheEntry.getKey(),true);
+        if (returnValue==null)
+            return true;
+        else
+            return false;
     }
 
     /**
@@ -174,9 +172,6 @@ public class Kelly<T>{
      * @param cacheEntry
      */
     protected void removeRequestInFlight(CacheEntry<T> cacheEntry){
-        synchronized (requestsInFlight) {
             requestsInFlight.remove(cacheEntry.getKey());
-        }
-
     }
 }
