@@ -155,12 +155,12 @@ It has a very simple interface for usage.</p>
 <span class="cm">    * here the RemoteCache can be a wrapper to some kind of</span>
 <span class="cm">    * memcached client.</span>
 <span class="cm">    */</span>
-    <span class="n">CacheProvider</span><span class="o">&lt;</span><span class="n">CachedObject</span><span class="o">&gt;</span> <span class="n">cacheProvider</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RemoteCache</span><span class="o">();</span>
+    <span class="n">CacheProvider</span><span class="o">&lt;</span><span class="n">CachedObject</span><span class="o">&gt;</span> <span class="n">cacheProvider</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">RemoteCache</span><span class="o">();</span>
 
     <span class="cm">/**</span>
 <span class="cm">    * obtain an instance of a CacheLoader implementation</span>
 <span class="cm">    */</span>
-    <span class="n">CacheLoader</span><span class="o">&lt;</span><span class="n">CachedObject</span><span class="o">&gt;</span> <span class="n">cacheLoader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyCacheLoader</span><span class="o">();</span>
+    <span class="n">CacheLoader</span><span class="o">&lt;</span><span class="n">CachedObject</span><span class="o">&gt;</span> <span class="n">cacheLoader</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">MyCacheLoader</span><span class="o">();</span>
 
     <span class="cm">/**</span>
 <span class="cm">    * Fix the threadpool size for the number of threads that will</span>
@@ -172,17 +172,17 @@ It has a very simple interface for usage.</p>
 <span class="cm">    * Create a kelly reloading cache instance with the provided</span>
 <span class="cm">    * cacheProvider, cacheLoader and threadPoolSize</span>
 <span class="cm">    */</span>
-    <span class="n">Kelly</span><span class="o">&lt;</span><span class="n">CachedObject</span><span class="o">&gt;</span> <span class="n">cache</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Kelly</span><span class="o">(</span><span class="n">cacheProvider</span><span class="o">,</span> <span class="n">cacheLoader</span><span class="o">,</span> <span class="n">threadPoolSize</span><span class="o">);</span>
+    <span class="n">Kelly</span><span class="o">&lt;</span><span class="n">CachedObject</span><span class="o">&gt;</span> <span class="n">cache</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Kelly</span><span class="o">(</span><span class="n">cacheProvider</span><span class="o">,</span> <span class="n">cacheLoader</span><span class="o">,</span> <span class="n">threadPoolSize</span><span class="o">);</span>
 
     <span class="n">String</span> <span class="n">key</span> <span class="o">=</span> <span class="s">"sample_key"</span><span class="o">;</span>
-    <span class="n">CachedObject</span> <span class="n">value</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CachedObject</span><span class="o">();</span>
+    <span class="n">CachedObject</span> <span class="n">value</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">CachedObject</span><span class="o">();</span>
     <span class="kt">long</span> <span class="n">expiryTtl</span> <span class="o">=</span> <span class="mi">300</span><span class="o">;</span>
 
     <span class="cm">/**</span>
 <span class="cm">    * Create a CacheEntry instance with the given</span>
 <span class="cm">    * key, value and ttl for expiry</span>
 <span class="cm">    */</span>
-    <span class="n">CacheEntry</span> <span class="n">cacheEntry</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CacheEntry</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="n">expiryTtl</span><span class="o">);</span>
+    <span class="n">CacheEntry</span> <span class="n">cacheEntry</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">CacheEntry</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="n">expiryTtl</span><span class="o">);</span>
 
     <span class="c1">//put a CacheEntry in Cache</span>
     <span class="n">cache</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">cacheEntry</span><span class="o">);</span>
@@ -303,7 +303,7 @@ given key. usage is as follows, where the <strong>ttl is in seconds</strong></p>
 <div class="highlight highlight-xml"><pre>   <span class="nt">&lt;dependency&gt;</span>
      <span class="nt">&lt;groupId&gt;</span>com.flipkart.lego<span class="nt">&lt;/groupId&gt;</span>
      <span class="nt">&lt;artifactId&gt;</span>gracekelly-core<span class="nt">&lt;/artifactId&gt;</span>
-     <span class="nt">&lt;version&gt;</span>1.2.7<span class="nt">&lt;/version&gt;</span>
+     <span class="nt">&lt;version&gt;</span>1.3.2<span class="nt">&lt;/version&gt;</span>
    <span class="nt">&lt;/dependency&gt;</span>
 </pre></div>
 
