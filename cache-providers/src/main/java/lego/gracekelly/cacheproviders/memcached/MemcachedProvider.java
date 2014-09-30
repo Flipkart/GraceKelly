@@ -24,6 +24,7 @@ import net.spy.memcached.MemcachedClient;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -44,6 +45,19 @@ public class MemcachedProvider<T> implements CacheProvider<T> {
     public MemcachedProvider(InetSocketAddress inetSocketAddress) throws CacheProviderException {
         try {
             memcachedClient = new MemcachedClient(inetSocketAddress);
+        } catch (IOException e) {
+            throw new CacheProviderException(e);
+        }
+    }
+
+    /**
+     * Create a new memcached provider by giving it a {@link List} of {@link InetSocketAddress}s
+     * @param inetSocketAddresses
+     * @throws CacheProviderException
+     */
+    public MemcachedProvider(List<InetSocketAddress> inetSocketAddresses) throws CacheProviderException {
+        try {
+            memcachedClient = new MemcachedClient(inetSocketAddresses);
         } catch (IOException e) {
             throw new CacheProviderException(e);
         }
