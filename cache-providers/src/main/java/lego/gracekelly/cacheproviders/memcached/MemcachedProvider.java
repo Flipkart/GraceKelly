@@ -34,7 +34,8 @@ import java.util.concurrent.ExecutionException;
 public class MemcachedProvider<T> implements CacheProvider<T> {
 
     private final MemcachedClient memcachedClient;
-    private final static int INFINTITE_TTL = 0;
+    private final static int INFINITE_TTL = 0;
+    private final int TTL;
 
     /**
      * Create a new memcached provider by giving it the {@link InetSocketAddress} of the memcached
@@ -42,9 +43,10 @@ public class MemcachedProvider<T> implements CacheProvider<T> {
      * @param inetSocketAddress
      * @throws CacheProviderException
      */
-    public MemcachedProvider(InetSocketAddress inetSocketAddress) throws CacheProviderException {
+    public MemcachedProvider(InetSocketAddress inetSocketAddress, final int TTL) throws CacheProviderException {
         try {
             memcachedClient = new MemcachedClient(inetSocketAddress);
+            this.TTL = TTL;
         } catch (IOException e) {
             throw new CacheProviderException(e);
         }
@@ -55,9 +57,10 @@ public class MemcachedProvider<T> implements CacheProvider<T> {
      * @param inetSocketAddresses
      * @throws CacheProviderException
      */
-    public MemcachedProvider(List<InetSocketAddress> inetSocketAddresses) throws CacheProviderException {
+    public MemcachedProvider(List<InetSocketAddress> inetSocketAddresses, final int TTL) throws CacheProviderException {
         try {
             memcachedClient = new MemcachedClient(inetSocketAddresses);
+            this.TTL = TTL;
         } catch (IOException e) {
             throw new CacheProviderException(e);
         }
@@ -84,7 +87,7 @@ public class MemcachedProvider<T> implements CacheProvider<T> {
     @Override
     public Boolean put(String key, CacheEntry<T> value) throws CacheProviderException {
         try {
-            return memcachedClient.set(key,INFINTITE_TTL, value).get();
+            return memcachedClient.set(key,TTL, value).get();
         } catch (InterruptedException e) {
             throw new CacheProviderException(e);
         } catch (ExecutionException e) {
