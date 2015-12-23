@@ -32,9 +32,18 @@ public final class CacheEntry<T> implements Serializable {
     private final long ttl;
     private final long epoch_timestamp;
 
-    private CacheEntry() throws UnsupportedOperationException{
-        throw new UnsupportedOperationException();
-    };
+    public CacheEntry() {
+        /*
+        * Please refrain from using this constructor
+        * This is meant for consumption by
+        * serialization/de-serialization libraries
+        * like Jackson
+        * */
+        ttl = 0;
+        epoch_timestamp = 0;
+        key = null;
+        value = null;
+    }
 
     /**
      * Constructor for an expirable CacheEntry
