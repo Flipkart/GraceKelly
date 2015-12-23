@@ -41,11 +41,33 @@ public class Kelly<T>{
      * @param cacheProvider
      * @param cacheLoader
      * @param executorPoolSize
+     *
+     * @deprecated This constructor creates unbounded queue which can make JVM go OOM.
+     * Instead use the constructor {@link #Kelly(CacheProvider, CacheLoader, int, int)} with defined queueSize.
      */
+    @Deprecated
     public Kelly(CacheProvider<T> cacheProvider, CacheLoader<T> cacheLoader, int executorPoolSize){
         this.cacheProvider = cacheProvider;
         this.cacheLoader = cacheLoader;
         executorService = Executors.newFixedThreadPool(executorPoolSize);
+        this.requestsInFlight = new ConcurrentHashMap<String, Boolean>();
+    }
+
+    /**
+     * The Kelly constructor takes a {@link CacheProvider}, {@link CacheLoader}, a threadPool size
+     * along with queueSize for cache reloading.
+     * @param cacheProvider
+     * @param cacheLoader
+     * @param threadPoolSize max number of threads to be used for async refresh
+     * @param queueSize max number of requests to be queued for async refresh
+     */
+    public Kelly(CacheProvider<T> cacheProvider, CacheLoader<T> cacheLoader, int threadPoolSize,
+                 int queueSize){
+        this.cacheProvider = cacheProvider;
+        this.cacheLoader = cacheLoader;
+        executorService = new ThreadPoolExecutor(threadPoolSize, threadPoolSize, 0L,
+                                                 TimeUnit.MILLISECONDS,
+                                              new LinkedBlockingQueue<Runnable>(queueSize));
         this.requestsInFlight = new ConcurrentHashMap<String, Boolean>();
     }
 

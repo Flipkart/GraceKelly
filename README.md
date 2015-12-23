@@ -114,12 +114,20 @@ It has a very simple interface for usage.
     * be used to reload cache entries
     */
     Integer threadPoolSize = 10;
+    
+    /**
+    * Fix the queueSize for the number of requests that will
+    * get queued to reload cache entries.
+    * If queueSize is breached, it will result in an error 
+    * instead of infinitely queuing till JVM goes OOM. 
+    */
+    Integer queueSize = 1000;
 
     /**
     * Create a kelly reloading cache instance with the provided
-    * cacheProvider, cacheLoader and threadPoolSize
+    * cacheProvider, cacheLoader, threadPoolSize and queueSize
     */
-    Kelly<CachedObject> cache = new Kelly(cacheProvider, cacheLoader, threadPoolSize);
+    Kelly<CachedObject> cache = new Kelly(cacheProvider, cacheLoader, threadPoolSize, queueSize);
 
     String key = "sample_key";
     CachedObject value = new CachedObject();
