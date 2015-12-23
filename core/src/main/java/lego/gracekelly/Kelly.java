@@ -16,14 +16,23 @@
 
 package lego.gracekelly;
 
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
+
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
 import lego.gracekelly.api.CacheLoader;
 import lego.gracekelly.api.CacheProvider;
 import lego.gracekelly.entities.CacheEntry;
 import lego.gracekelly.exceptions.CacheProviderException;
 import lego.gracekelly.exceptions.KellyException;
 import lego.gracekelly.helpers.Ticker;
-
-import java.util.concurrent.*;
 
 /**
  * Kelly is the primary class for Gracekelly that reloads cacheEntries when they expire
@@ -67,7 +76,12 @@ public class Kelly<T>{
         this.cacheLoader = cacheLoader;
         executorService = new ThreadPoolExecutor(threadPoolSize, threadPoolSize, 0L,
                                                  TimeUnit.MILLISECONDS,
-                                              new LinkedBlockingQueue<Runnable>(queueSize));
+                                                 new LinkedBlockingQueue<Runnable>(queueSize),
+                                                 new ThreadFactoryBuilder()
+                                                     .setDaemon(false)
+                                                     .setNameFormat("fk-kelly-pool-%d")
+                                                     .setPriority(Thread.NORM_PRIORITY)
+                                                     .build());
         this.requestsInFlight = new ConcurrentHashMap<String, Boolean>();
     }
 
