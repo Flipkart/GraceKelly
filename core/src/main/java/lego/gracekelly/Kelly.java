@@ -16,14 +16,23 @@
 
 package lego.gracekelly;
 
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
+
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
 import lego.gracekelly.api.CacheLoader;
 import lego.gracekelly.api.CacheProvider;
 import lego.gracekelly.entities.CacheEntry;
 import lego.gracekelly.exceptions.CacheProviderException;
 import lego.gracekelly.exceptions.KellyException;
 import lego.gracekelly.helpers.Ticker;
-
-import java.util.concurrent.*;
 
 /**
  * Kelly is the primary class for Gracekelly that reloads cacheEntries when they expire
@@ -41,11 +50,38 @@ public class Kelly<T>{
      * @param cacheProvider
      * @param cacheLoader
      * @param executorPoolSize
+     *
+     * @deprecated This constructor creates unbounded queue which can make JVM go OOM.
+     * Instead use the constructor {@link #Kelly(CacheProvider, CacheLoader, int, int)} with defined queueSize.
      */
+    @Deprecated
     public Kelly(CacheProvider<T> cacheProvider, CacheLoader<T> cacheLoader, int executorPoolSize){
         this.cacheProvider = cacheProvider;
         this.cacheLoader = cacheLoader;
         executorService = Executors.newFixedThreadPool(executorPoolSize);
+        this.requestsInFlight = new ConcurrentHashMap<String, Boolean>();
+    }
+
+    /**
+     * The Kelly constructor takes a {@link CacheProvider}, {@link CacheLoader}, a threadPool size
+     * along with queueSize for cache reloading.
+     * @param cacheProvider
+     * @param cacheLoader
+     * @param threadPoolSize max number of threads to be used for async refresh
+     * @param queueSize max number of requests to be queued for async refresh
+     */
+    public Kelly(CacheProvider<T> cacheProvider, CacheLoader<T> cacheLoader, int threadPoolSize,
+                 int queueSize){
+        this.cacheProvider = cacheProvider;
+        this.cacheLoader = cacheLoader;
+        executorService = new ThreadPoolExecutor(threadPoolSize, threadPoolSize, 0L,
+                                                 TimeUnit.MILLISECONDS,
+                                                 new LinkedBlockingQueue<Runnable>(queueSize),
+                                                 new ThreadFactoryBuilder()
+                                                     .setDaemon(false)
+                                                     .setNameFormat("fk-kelly-pool-%d")
+                                                     .setPriority(Thread.NORM_PRIORITY)
+                                                     .build());
         this.requestsInFlight = new ConcurrentHashMap<String, Boolean>();
     }
 
