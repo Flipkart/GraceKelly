@@ -30,7 +30,7 @@ as much predictability as possible when building a service/system.
 
 ####Sheilds up
 
-Caches act as sentinels in an distributed environment. Although their
+Caches act as sentinels in a distributed environment. Although their
 primary function is to reduce latency, when used appropriately they
 excel at bringing predictability to a system. That’s because a cache
 request is extremely predictable, with almost no variability, either
@@ -55,7 +55,7 @@ load for the duration of synchronization.
 
 The time between **t1** and **t2** is the duration of exposure. The
 predictability of the target service and all the services it depends
-on during this time is affected by the the per request load and the
+on during this time is affected by the per request load and the
 qps of all requests that result in a cache miss for c1.
 
 <img src="https://img1a.flixcart.com//www/promos/new/20130906-135948-cache-expiry.jpg" style="background-color: #fff;">
